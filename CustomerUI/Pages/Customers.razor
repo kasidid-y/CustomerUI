@@ -1,0 +1,56 @@
+﻿@page "/customers"
+@inject HttpClient Http
+@using CustomerUI.Services
+@using CustomerUI.DTO
+@inject CustomerService customerService
+
+<PageTitle>Customers</PageTitle>
+
+<h1>Customers</h1>
+
+
+
+@if (customers == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Customer ID</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in customers)
+            {
+                <tr>
+                    <td>@customer.CustomerId</td>
+                    <td>@customer.FullName</td>
+                    <td>@customer.Email</td>
+                    <td>@customer.PhoneNumber</td>
+                    <td>
+                        <button class="btn btn-danger px-1 m-0">Delete</button>
+                        <button class="btn btn-warning px-1 m-0">Update</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private ICollection<CustomerDTO>? customers;
+
+    protected override async Task OnInitializedAsync()
+    {
+        customers = await customerService.GetCustomersAsync();
+    }
+
+    
+}
