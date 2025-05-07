@@ -36,7 +36,9 @@ else
                     <td>@customer.PhoneNumber</td>
                     <td>
                         <button class="btn btn-danger px-1 m-0">Delete</button>
-                        <button class="btn btn-warning px-1 m-0">Update</button>
+                    </td>
+                    <td>
+                        <a class="btn btn-sm btn-warning" href="/edit-customer/@customer.CustomerId">Edit</a>
                     </td>
                 </tr>
             }
@@ -51,6 +53,7 @@ else
     {
         customers = await customerService.GetCustomersAsync();
     }
+    
 
     
 }
