@@ -1,16 +1,16 @@
-﻿@page "/update-customer{id:int}"
+﻿@page "/update-customer/{id:int?}"
 @using CustomerUI.DTO
 @using CustomerUI.Services
 @inject CustomerService customerService
 @inject NavigationManager NavigationManager
 
-<PageTitle>Edit Customer</PageTitle>
+<PageTitle>Update Customer</PageTitle>
 
 <h1>Edit Customer</h1>
 
 @if(customer == null)
 {
-    <p><em>Loading...</em></p>
+    <p><em>Select customer you wish to update detail at the Customers Page</em></p>
 }
 else
 {
@@ -46,7 +46,7 @@ else
 
     private async Task UpdateCustomer()
     {
-        await customerService.CreateCustomerAsync(customer);
+        await customerService.UpdateCustomerAsync(customer);
         NavigationManager.NavigateTo("/customers");
 
     }
